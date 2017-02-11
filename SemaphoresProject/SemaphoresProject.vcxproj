@@ -111,6 +111,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\driver.cpp" />
+    <ClCompile Include="..\semaphore.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\handout.txt" />
@@ -122,6 +123,7 @@
     <None Include="..\out1" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\semaphore.h" />
     <ClInclude Include="..\semaphore.skeleton.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
