@@ -2,19 +2,22 @@
 
 void Semaphore::wait()
 {
-	if (threadsInside < maxThreads)
+	std::unique_lock<std::mutex> lock(mutex);
+	while (!numThreadsInside)
 	{
-		threadsInside++;
-		return;
+		cv.wait(lock);
 	}
-	else {
-		cv.wait(lock, [=] {return threadsInside < maxThreads; });
-		}
+
+	--numThreadsInside;
+
+	return;
 }
 
 void Semaphore::signal()
 {
-	threadsInside--;
-	lock.unlock;
+	std::unique_lock<std::mutex> lock(mutex);
+	++numThreadsInside;
+	lock.unlock();
 	cv.notify_all();
+	return;
 }

@@ -8,17 +8,17 @@ public:
 
 
 
-	Semaphore(int m) : maxThreads(m), cv(), threadsInside(0), lock() {}
+	Semaphore(int m) : numThreadsInside(m),  cv(),  mutex() {}
 
-	int getMaxThreads() const { return maxThreads; }
+	int getNumThreadsInside() const { return numThreadsInside; }
 
 
 	void wait();
 	void signal();
 private:
 
-	const int maxThreads;
-	std::atomic<int> threadsInside;
+	
+	int numThreadsInside;
 	std::condition_variable cv;
-	std::unique_lock<std::mutex> lock;
+	std::mutex mutex;
 };
